@@ -46,6 +46,13 @@ export const diacritical: Diacriticals = {
             begin: 0xfe20,
             end: 0xfe2f
         }
+    ],
+    Extended: [
+        {
+            isRange: true,
+            begin: 0x1ab0,
+            end: 0x1ace
+        }
     ]
 }
 
