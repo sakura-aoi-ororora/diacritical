@@ -1,8 +1,9 @@
 import flowbitePlugin from 'flowbite/plugin'
+import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js,svelte,ts}",'./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
+  content: ["./src/**/*.{html,js,svelte,ts}", './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
   darkMode: "selector",
   theme: {
     extend: {
@@ -11,6 +12,17 @@ export default {
       }
     },
   },
-  plugins: [flowbitePlugin],
+  plugins: [flowbitePlugin,
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          "grid-cols-auto-fill": (value) => ({
+            gridTemplateColumns: `repeat(auto-fill, minmax(${value}, 1fr))`,
+          }),
+        },
+        { values: theme("spacing") }
+      );
+    }),
+  ],
 }
 
